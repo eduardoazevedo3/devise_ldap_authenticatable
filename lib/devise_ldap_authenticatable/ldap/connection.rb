@@ -18,6 +18,7 @@ module Devise
         @ldap.port = ldap_config["port"]
         @ldap.base = ldap_config["base"]
         @attribute = ldap_config["attribute"]
+        @password_attribute = ldap_config["password_attribute"].to_sym
         @allow_unauthenticated_bind = ldap_config["allow_unauthenticated_bind"]
 
         @ldap_auth_username_builder = params[:ldap_auth_username_builder]
@@ -100,7 +101,7 @@ module Devise
       end
 
       def change_password!
-        update_ldap(:userpassword => Net::LDAP::Password.generate(:sha, @new_password))
+        update_ldap(@password_attribute =>  @password_attribute == :unicodepwd ? "\"#{@new_password}\"".encode("UTF-16LE").force_encoding("UTF-8") : Net::LDAP::Password.generate(:sha, @new_password))
       end
 
       def in_required_groups?

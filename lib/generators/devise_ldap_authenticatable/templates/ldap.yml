@@ -25,6 +25,7 @@ development:
   host: localhost
   port: 389
   attribute: cn
+  password_attribute: userpassword
   base: ou=people,dc=test,dc=com
   admin_user: cn=admin,dc=test,dc=com
   admin_password: admin_password
@@ -35,6 +36,7 @@ test:
   host: localhost
   port: 3389
   attribute: cn
+  password_attribute: userpassword
   base: ou=people,dc=test,dc=com
   admin_user: cn=admin,dc=test,dc=com
   admin_password: admin_password
@@ -45,6 +47,7 @@ production:
   host: localhost
   port: 636
   attribute: cn
+  password_attribute: userpassword
   base: ou=people,dc=test,dc=com
   admin_user: cn=admin,dc=test,dc=com
   admin_password: admin_password
