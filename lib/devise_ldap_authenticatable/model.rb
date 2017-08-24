@@ -19,7 +19,7 @@ module Devise
 
       def login_with
         @login_with ||= Devise.mappings.find {|k,v| v.class_name == self.class.name}.last.to.authentication_keys.first
-        self[@login_with]
+        self.send(@login_with)
       end
 
       def change_password!(current_password)
